@@ -1,37 +1,14 @@
+package ContactsManager;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
-public class Contacts {
-
-
-    public class contactsList {
-        private String contactName;
-        private Integer contactNumber;
-
-        public String getContactName() {
-            return contactName;
-        }
-
-        public void setContactName(String contactName) {
-            this.contactName = contactName;
-        }
-
-        public Integer getContactNumber() {
-            return contactNumber;
-        }
-
-        public void setContactNumber(Integer contactNumber) {
-            this.contactNumber = contactNumber;
-        }
-
-        List<String,Integer> newContacts = Arrays.asList();
-
+public class ContactsMain {
         public static void main(String[] args) throws IOException {
             String directory = "data";
             String contactsFile = "contacts.txt";
@@ -47,15 +24,14 @@ public class Contacts {
                 Files.createFile(dataFile);
             }
             System.out.println();
+
+
+
         }
     }
-
-
 //      List<String, Integer> contactsList = Arrays.asList("", "milk", "sugar");
 //
 //    Path filepath = Paths.get("data", "groceries.txt");
 //
 //        Files.write(filepath, groceryList);
 
-
-}
