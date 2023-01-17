@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
+
 public class Updates {
     static ArrayList<Contacts> contacts = new ArrayList<>();
 
@@ -26,6 +28,7 @@ public class Updates {
     }
 
     public static void ViewContacts() throws IOException {
+        System.out.println(contacts);
 
     }
 
@@ -51,6 +54,7 @@ public class Updates {
 
     }
     public static void exit() throws IOException {
-
+        System.out.println("Goodbye!");
+        System.exit(0);
     }
 }

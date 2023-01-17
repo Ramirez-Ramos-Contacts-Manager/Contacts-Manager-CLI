@@ -26,6 +26,7 @@ public class ContactsMain {
                 Files.createFile(dataFile);
             }
             System.out.println();
+//            System.out.println(Updates.ViewContacts());
 
             while (true) {
                 int userInput = Updates.mainMenu();
