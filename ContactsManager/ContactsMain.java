@@ -27,9 +27,21 @@ public class ContactsMain {
             }
             System.out.println();
 
-
-
-
+            while (true) {
+                int userInput = Updates.mainMenu();
+                if (userInput == 1)
+                    Updates.ViewContacts();
+                else if (userInput == 2)
+                    Updates.addContact();
+                else if (userInput == 3)
+                    Updates.searchByName();
+                else if (userInput == 4) {
+                    Updates.deleteContact();
+                } else if (userInput == 5) {
+                    Updates.exit();
+                } else
+                    System.out.println("Invalid input.");
+            }
         }
 }
 
