@@ -26,6 +26,4 @@ public class Contacts {
         public String toString(){
             return this.Name + " " + "Phone Number: " + this.phoneNumber;
         }
-
-    ArrayList<Contacts> contacts = new ArrayList<>();
 }
