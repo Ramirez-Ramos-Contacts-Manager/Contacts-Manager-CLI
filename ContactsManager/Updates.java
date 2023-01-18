@@ -32,12 +32,12 @@ public class Updates {
     }
 
     public static void ViewContacts() throws IOException {
-        System.out.println("Name | Phone Number\n-----------------------");
+        System.out.printf("Name | Phone Number |\n-----------------------\n");
         //Path dataFile = Paths.get("data", "contacts.txt");
         List<String> contacts = Files.readAllLines(dataFile);
 
         for (int i = 0; i < contacts.size(); i += 1) {
-            System.out.println((i + 1) + ": " + contacts.get(i));
+            System.out.printf((i + 1) + ": " + contacts.get(i)) ;
         }
     }
 
@@ -47,6 +47,7 @@ public class Updates {
         String Name = scanner.nextLine();
         System.out.print("  Enter A Phone Number : ");
         String phoneNumber = scanner.nextLine();
+
         Files.write(
                 Paths.get("data", "contacts.txt"),
                 Arrays.asList(Name + " " + " | " + phoneNumber),
@@ -71,15 +72,16 @@ public class Updates {
         System.out.print(" Enter A Name or Number: ");
         String input = scanner.nextLine();
         List<String> contacts = Files.readAllLines(dataFile);
-
+        String foundContact = null;
         for (String contact : contacts) {
             if (contact.contains(input)){
-                //contact.remove(input);
-                contacts.get(contact);
-                System.out.println(contacts);
+               foundContact = contact;
+
 
             }
         }
+        contacts.remove(foundContact);
+        System.out.println(contacts);
     }
     public static void exit() throws IOException {
         System.out.println("Goodbye!");
