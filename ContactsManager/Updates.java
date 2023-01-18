@@ -1,16 +1,12 @@
 package ContactsManager;
-import jdk.jfr.Name;
+
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
+import java.util.*;
 
 
 public class Updates {
@@ -38,7 +34,8 @@ public class Updates {
 
         for (int i = 0; i < contacts.size(); i += 1) {
             String[] contactInfo = contacts.get(i).split("\\|");
-            System.out.printf("%11s| %-12s|\n",contactInfo[0],contactInfo[1]) ;
+            Collections.sort(contacts);
+            System.out.printf("%11s| %-12s|\n", contactInfo[0], contactInfo[1]);
         }
     }
 
@@ -47,10 +44,9 @@ public class Updates {
         String Name = scanner.nextLine();
         System.out.print("  Enter A Phone Number : ");
         String phoneNumber = scanner.nextLine();
-
         Files.write(
                 Paths.get("data", "contacts.txt"),
-                Arrays.asList(Name + "1 " + " | " + phoneNumber),
+                Arrays.asList(Name + " " + " | " + phoneNumber),
                 StandardOpenOption.APPEND
         );
         contacts.add(new Contacts(Name, phoneNumber));
@@ -68,24 +64,25 @@ public class Updates {
             }
         }
     }
+
     public static void deleteContact() throws IOException {
         System.out.print(" Enter A Name or Number: ");
         String input = scanner.nextLine();
         List<String> contacts = Files.readAllLines(dataFile);
         String foundContact = null;
         for (String contact : contacts) {
-            if (contact.toLowerCase().contains(input)){
-               foundContact = contact;
+            if (contact.toLowerCase().contains(input)) {
+                foundContact = contact;
 
 
             }
         }
         contacts.remove(foundContact);
-        System.out.println(contacts);
-        Files.write(Paths.get("data","contacts.txt"),contacts);
+        System.out.println();
+        Files.write(Paths.get("data", "contacts.txt"), contacts);
     }
 
-    public static void exit() throws IOException {
+    public static void exit(){
         System.out.println("Goodbye!");
         System.exit(0);
     }
