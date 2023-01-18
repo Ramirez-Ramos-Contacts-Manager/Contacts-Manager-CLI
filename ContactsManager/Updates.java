@@ -31,10 +31,8 @@ public class Updates {
     public static void ViewContacts() throws IOException {
         System.out.printf("Name       | Phone Number |\n---------------------------\n");
         List<String> contacts = Files.readAllLines(dataFile);
-
         for (int i = 0; i < contacts.size(); i += 1) {
             String[] contactInfo = contacts.get(i).split("\\|");
-            Collections.sort(contacts);
             System.out.printf("%11s| %-12s|\n", contactInfo[0], contactInfo[1]);
         }
     }
@@ -46,7 +44,7 @@ public class Updates {
         String phoneNumber = scanner.nextLine();
         Files.write(
                 Paths.get("data", "contacts.txt"),
-                Arrays.asList(Name + " " + " | " + phoneNumber),
+                List.of(Name + " " + " | " + phoneNumber),
                 StandardOpenOption.APPEND
         );
         contacts.add(new Contacts(Name, phoneNumber));
@@ -71,14 +69,14 @@ public class Updates {
         List<String> contacts = Files.readAllLines(dataFile);
         String foundContact = null;
         for (String contact : contacts) {
-            if (contact.toLowerCase().contains(input)) {
+            if (contact.contains(input)) {
                 foundContact = contact;
 
 
             }
         }
         contacts.remove(foundContact);
-        System.out.println();
+        System.out.println("Contact successfully deleted!");
         Files.write(Paths.get("data", "contacts.txt"), contacts);
     }
 
