@@ -33,7 +33,7 @@ public class Updates {
         List<String> contacts = Files.readAllLines(dataFile);
         for (int i = 0; i < contacts.size(); i += 1) {
             String[] contactInfo = contacts.get(i).split("\\|");
-            System.out.printf("%11s| %-12s|\n", contactInfo[0], contactInfo[1]);
+            System.out.printf("%-11s| %-12s|\n", contactInfo[0], contactInfo[1]);
         }
     }
 
