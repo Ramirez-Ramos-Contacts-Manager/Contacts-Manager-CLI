@@ -1,4 +1,6 @@
 package ContactsManager;
+import jdk.jfr.Name;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,22 +29,20 @@ public class Updates {
 
         Scanner myScanner = new Scanner(System.in);
         int userInput = myScanner.nextInt();
-//        System.out.println("-----------------------------");
         return userInput;
     }
 
     public static void ViewContacts() throws IOException {
-        System.out.printf("Name | Phone Number |\n-----------------------\n");
-        //Path dataFile = Paths.get("data", "contacts.txt");
+        System.out.printf("Name       | Phone Number |\n---------------------------\n");
         List<String> contacts = Files.readAllLines(dataFile);
 
         for (int i = 0; i < contacts.size(); i += 1) {
-            System.out.printf((i + 1) + ": " + contacts.get(i)) ;
+            String[] contactInfo = contacts.get(i).split("\\|");
+            System.out.printf("%11s| %-12s|\n",contactInfo[0],contactInfo[1]) ;
         }
     }
 
     public static void addContact() throws IOException {
-        // Scanner scanner = new Scanner(System.in);
         System.out.print("  Enter A Name: ");
         String Name = scanner.nextLine();
         System.out.print("  Enter A Phone Number : ");
@@ -50,7 +50,7 @@ public class Updates {
 
         Files.write(
                 Paths.get("data", "contacts.txt"),
-                Arrays.asList(Name + " " + " | " + phoneNumber),
+                Arrays.asList(Name + "1 " + " | " + phoneNumber),
                 StandardOpenOption.APPEND
         );
         contacts.add(new Contacts(Name, phoneNumber));
@@ -63,7 +63,7 @@ public class Updates {
         List<String> contacts = Files.readAllLines(dataFile);
 
         for (String contact : contacts) {
-            if (contact.contains(Name)) {
+            if (contact.toLowerCase().contains(Name)) {
                 System.out.println(contact);
             }
         }
@@ -74,7 +74,7 @@ public class Updates {
         List<String> contacts = Files.readAllLines(dataFile);
         String foundContact = null;
         for (String contact : contacts) {
-            if (contact.contains(input)){
+            if (contact.toLowerCase().contains(input)){
                foundContact = contact;
 
 
@@ -82,9 +82,12 @@ public class Updates {
         }
         contacts.remove(foundContact);
         System.out.println(contacts);
+        Files.write(Paths.get("data","contacts.txt"),contacts);
     }
+
     public static void exit() throws IOException {
         System.out.println("Goodbye!");
         System.exit(0);
     }
+
 }
