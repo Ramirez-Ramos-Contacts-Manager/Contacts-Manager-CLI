@@ -14,6 +14,8 @@ import java.util.Scanner;
 public class Updates {
     static ArrayList<Contacts> contacts = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
+    static Path dataFile = Paths.get("data", "contacts.txt");
+
     public static int mainMenu() {
         System.out.println("\nWhat would you like to do?");
         System.out.println("  1. View contacts");
@@ -31,7 +33,7 @@ public class Updates {
 
     public static void ViewContacts() throws IOException {
         System.out.println("Name | Phone Number\n-----------------------");
-        Path dataFile = Paths.get("data", "contacts.txt");
+        //Path dataFile = Paths.get("data", "contacts.txt");
         List<String> contacts = Files.readAllLines(dataFile);
 
         for (int i = 0; i < contacts.size(); i += 1) {
@@ -55,10 +57,29 @@ public class Updates {
     }
 
     public static void searchByName() throws IOException {
+        System.out.print("  Enter A Name: ");
+        String Name = scanner.nextLine();
+        List<String> contacts = Files.readAllLines(dataFile);
 
+        for (String contact : contacts) {
+            if (contact.contains(Name)) {
+                System.out.println(contact);
+            }
+        }
     }
     public static void deleteContact() throws IOException {
+        System.out.print(" Enter A Name or Number: ");
+        String input = scanner.nextLine();
+        List<String> contacts = Files.readAllLines(dataFile);
 
+        for (String contact : contacts) {
+            if (contact.contains(input)){
+                //contact.remove(input);
+                contacts.get(contact);
+                System.out.println(contacts);
+
+            }
+        }
     }
     public static void exit() throws IOException {
         System.out.println("Goodbye!");
