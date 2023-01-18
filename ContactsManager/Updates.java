@@ -1,17 +1,19 @@
 package ContactsManager;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 
 
 public class Updates {
     static ArrayList<Contacts> contacts = new ArrayList<>();
-
+    static Scanner scanner = new Scanner(System.in);
     public static int mainMenu() {
         System.out.println("\nWhat would you like to do?");
         System.out.println("  1. View contacts");
@@ -23,17 +25,22 @@ public class Updates {
 
         Scanner myScanner = new Scanner(System.in);
         int userInput = myScanner.nextInt();
-        System.out.println("-----------------------------");
+//        System.out.println("-----------------------------");
         return userInput;
     }
 
     public static void ViewContacts() throws IOException {
-        System.out.println(contacts);
+        System.out.println("Name | Phone Number\n-----------------------");
+        Path dataFile = Paths.get("data", "contacts.txt");
+        List<String> contacts = Files.readAllLines(dataFile);
 
+        for (int i = 0; i < contacts.size(); i += 1) {
+            System.out.println((i + 1) + ": " + contacts.get(i));
+        }
     }
 
     public static void addContact() throws IOException {
-        Scanner scanner = new Scanner(System.in);
+        // Scanner scanner = new Scanner(System.in);
         System.out.print("  Enter A Name: ");
         String Name = scanner.nextLine();
         System.out.print("  Enter A Phone Number : ");
